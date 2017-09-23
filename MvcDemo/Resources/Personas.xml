@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<persona>
+  <nombre>John</nombre>
+  <apellido>Snow</apellido>
+  <documento>80040257</documento>
+  <auto>
+    <marca>Ford</marca>
+    <modelo>Escort</modelo>
+    <fabricado>2006</fabricado>
+  </auto>
+</persona>

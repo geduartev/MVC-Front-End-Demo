@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Contactos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<button id="btn-start1" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    Boton Clic
+</button>
+<button id="btn-start2" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    Boton Double Clic
+</button>
+<button id="btn-start3" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    Boton Hover
+</button>
+<button id="btn-start4" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    Boton Mouse Up
+</button>
+<button id="btn-start5" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    Boton Mouse Down
+</button>
+
+<script type="text/javascript" language="javascript">
+    function fDecirHola() {
+        alert("Hola esto es javascript");
+    };
+
+    $("#btn-start1").click(
+        function() {
+            fDecirHola();
+        }
+    );
+
+    $("#btn-start2").dblclick(
+        function () {
+            alert("Doble clic");
+        }
+    );
+
+    $("#btn-start3").hover(
+        function () {
+            $("#txt-nombre").text = "Encima de...";
+        }
+    );
+
+    $("#btn-start4").mouseup(
+        function () {
+            alert("mouse up");
+        }
+    );
+
+    $("#btn-start5").mousedown(
+        function () {
+            alert("mouse down");
+        }
+    );
+
+    function validateForm() {
+        var x = document.forms["form-contacto"]["txt-email"].value;
+        var atpos = x.indexOf("@@");
+        var dotpos = x.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+            alert("Dirección de correo no válida.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+<form action="/Forms/ContactsResponse" method="post" autocomplete="on" id="form-contacto" onsubmit="return validateForm()">
+    <fieldset>
+        <label for="txt-nombre">Nombre</label>
+        <input type="text" name="nombre" id="txt-nombre" 
+               required pattern="[A-Z]{2}" title="Su nombre debe estar escrito en mayúscula, tener mínimo 2 caracteres no superar los 100 caracteres. MENSAJE Y VALIDACIONES QUE NO SON CONVENIENTES POR QUE DAMOS PISTAS A UN ATACANTE" 
+               placeholder="Digite su nombre en mayúsculas"maxlength="100" autofocus/>
+    </fieldset>
+    <fieldset>
+        <label for="txt-apellidos">Apellido</label>
+        <input type="text" name="apellido" id="txt-apellido" 
+               required pattern="[A-Z]{2}" title="Su apellido debe estar escrito en mayúscula, tener mínimo 2 caracteres y no superar los 100 caracteres." 
+               placeholder="Digite su apellidos en mayúsculas"maxlength="100" autofocus/>
+    </fieldset>
+    <fieldset>
+        <label for="txt-numeroreferencia">Numero de Referencia</label>
+        <input type="text" name="numeroreferencia" id="txt-numeroreferencia" 
+               required pattern="[A-Z]{3}[0-9]{4}" title="El número de referencia consta de 3 letras mayúsculas y 4 dígitos." 
+               placeholder="Digite acá el número de referencia. Ej: ABC1234" maxlength="7" autofocus/>
+    </fieldset>
+
+    @* VALIDACIÓN POR PROPIEDADES DE LAS ETIQUETAS
+        <input type="email" name="email" id="txt-email"
+           required pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$" title="Digite una dirección de correo electrónico válida."
+           placeholder="Digite acá su dirección de correo electrónico." maxlength="256" autofocus />*@
+    
+    @* VALIDACIÓN POR jquery.validate.js
+        <label for="txt-email">Dirección de mail</label>
+        <input type="email" name="email" id="txt-email"
+               required
+               placeholder="Digite acá su dirección de correo electrónico." maxlength="256" autofocus />
+        <div class="alert alert-danger" role="alert" >
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Enter a valid email address
+        </div>*@
+
+    <fieldset>
+        <label for="txt-email">Dirección de mail</label>
+        <input type="email" name="email" id="txt-email"
+               maxlength="256" autofocus />
+    </fieldset>
+    <fieldset>
+        <label for="txt-mensaje">Mensaje</label>
+        <input type="text" name="mensaje" id="txt-mensaje" placeholder="Digite acá su mensaje de texto." maxlength="256" autofocus/>
+    </fieldset>
+    <input type="submit" value="Enviar"/>
+</form>
+
+<script type="text/javascript" language="javascript">
+    $("form-contacto").validate();
+</script>

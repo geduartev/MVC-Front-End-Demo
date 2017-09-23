@@ -1,0 +1,23 @@
+﻿
+{
+  "nombre": "John",
+  "apellido": "Doe",
+  "edad": 25,
+  "altura_cm": 167.64,
+  "direccion": {
+    "calle": "21 2nd Street",
+    "ciudad": "New York",
+    "estado": "NY",
+    "codigoPostal": "100021-3100"
+  },
+  "telefono": [
+    {
+      "tipo": "cada",
+      "numero": "212 555-1234"
+    },
+    {
+      "tipo": "fax",
+      "numero": "646 555-4567"
+    }
+  ]
+}

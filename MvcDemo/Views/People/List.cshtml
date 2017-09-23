@@ -1,0 +1,25 @@
+﻿@using MvcDemo.Models
+
+@{
+    ViewBag.Title = "Listado de Personas";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Nombre</th>
+    </tr>
+    @foreach (Person person in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink("Ver Detalle", "Details", person)</td>
+            <td>@Html.Encode(person.Id)</td>
+            <td>@Html.Encode(person.Name)</td>
+        </tr>
+    }
+</table>
+
+<p>@Html.ActionLink("Crear Nueva Persona", "Create")</p>
